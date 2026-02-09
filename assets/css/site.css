@@ -346,7 +346,7 @@ h3 {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 200;
 }
 
 .mobile-menu__backdrop {
@@ -554,7 +554,7 @@ h3 {
 
 .btn.full-width {
   width: 100%;
-  text-align: centre;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -876,7 +876,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
-  align-items: centre;
+  align-items: center;
 }
 
 .supporters-marquee {
@@ -889,7 +889,7 @@ h3 {
 
 .supporters-track {
   display: flex;
-  align-items: centre;
+  align-items: center;
   gap: 2.25rem;
   width: max-content;
   padding: 0 1.5rem;
@@ -899,7 +899,7 @@ h3 {
 .supporter {
   flex: 0 0 auto;
   display: grid;
-  place-items: centre;
+  place-items: center;
   min-height: 56px;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -915,7 +915,7 @@ h3 {
 
 .supporter a {
   display: inline-grid;
-  place-items: centre;
+  place-items: center;
   border-radius: var(--radius-10);
   transition: transform 0.22s ease, filter 0.22s ease, opacity 0.22s ease;
 }
@@ -979,7 +979,7 @@ h3 {
 .footer-top {
   display: flex;
   justify-content: space-between;
-  align-items: centre;
+  align-items: center;
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -1070,7 +1070,7 @@ h3 {
 
 .footer-section-row {
   display: flex;
-  align-items: centre;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
 }
@@ -1111,7 +1111,7 @@ h3 {
 }
 
 .footer-bottom {
-  text-align: centre;
+  text-align: center;
   font-size: 0.9rem;
   opacity: 0.95;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -1124,7 +1124,7 @@ h3 {
 
 .footer-meta-row {
   display: flex;
-  justify-content: centre;
+  justify-content: center;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
