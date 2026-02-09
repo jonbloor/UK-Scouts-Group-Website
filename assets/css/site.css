@@ -182,7 +182,7 @@ h3 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   padding: 1rem 0;
 }
 
@@ -291,7 +291,7 @@ h3 {
 /* CTA (Join) */
 .nav-cta {
   border: 2px solid var(--brand);
-  border-radius: 999px;
+  border-radius: var(--radius-0);
   border-bottom-color: transparent; /* stop underline fighting */
 }
 
@@ -427,6 +427,7 @@ h3 {
   position: relative;
   color: #fff;
   overflow: hidden;
+  margin-top: 0.5rem;
 }
 
 .hero-media {
