@@ -34,6 +34,10 @@ CREATE TABLE IF NOT EXISTS calendar_events (
   UNIQUE(uid, start_utc),
   FOREIGN KEY(source_id) REFERENCES calendar_sources(id)
 );
+
+CREATE INDEX IF NOT EXISTS idx_calendar_events_source ON calendar_events(source_id);
+CREATE INDEX IF NOT EXISTS idx_calendar_events_start ON calendar_events(start_utc);
+CREATE INDEX IF NOT EXISTS idx_calendar_events_visibility_start ON calendar_events(visibility, start_utc);
 ");
 
 function curl_get(string $url): string {
@@ -156,6 +160,7 @@ ON CONFLICT(uid, start_utc) DO UPDATE SET
   visibility=excluded.visibility,
   updated_utc=excluded.updated_utc
 ");
+$deleteAllEventsForSource = $pdo->prepare("DELETE FROM calendar_events WHERE source_id = ?");
 
 foreach (($CALENDAR['sources'] ?? []) as $src) {
   $name = (string)($src['name'] ?? 'Calendar feed');
@@ -176,6 +181,7 @@ foreach (($CALENDAR['sources'] ?? []) as $src) {
     $events = parse_ics_events($ics);
 
     $count = 0;
+    $seenKeys = [];
     foreach ($events as $ev) {
       $uid = normalise_text($ev['UID'] ?? '');
       $title = normalise_text($ev['SUMMARY'] ?? 'Event');
@@ -187,6 +193,7 @@ foreach (($CALENDAR['sources'] ?? []) as $src) {
       $startUtc = parse_dt_to_utc_iso($startRaw);
       $endUtc   = $endRaw ? parse_dt_to_utc_iso($endRaw) : null;
       if (!$uid || !$startUtc) continue;
+      $seenKeys[] = $uid . '|' . $startUtc;
 
       $visibility = 'members';
       $hay = strtolower($title . ' ' . $desc);
@@ -211,6 +218,17 @@ foreach (($CALENDAR['sources'] ?? []) as $src) {
       ]);
 
       $count++;
+    }
+
+    if ($seenKeys) {
+      $placeholders = implode(',', array_fill(0, count($seenKeys), '?'));
+      $stmt = $pdo->prepare(sprintf(
+        "DELETE FROM calendar_events WHERE source_id = ? AND (uid || '|' || start_utc) NOT IN (%s)",
+        $placeholders
+      ));
+      $stmt->execute(array_merge([$sourceId], $seenKeys));
+    } else {
+      $deleteAllEventsForSource->execute([$sourceId]);
     }
 
     $updSource->execute([$nowUtc, "OK: $count events", $sourceId]);
