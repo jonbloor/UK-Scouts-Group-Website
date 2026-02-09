@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
+session_start();
 require __DIR__ . '/includes/config.php';
 $pageTitle = 'Contact';
+$csrfToken = generate_csrf_token();
 require __DIR__ . '/partials/header.php';
 ?>
 
@@ -17,6 +19,7 @@ require __DIR__ . '/partials/header.php';
     <div class="card">
       <h2>Send a message</h2>
       <form class="form" method="post" action="/contact-submit.php">
+        <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
         <label>Your name <input name="name" required></label>
         <label>Email <input type="email" name="email" required></label>
         <label>Topic
