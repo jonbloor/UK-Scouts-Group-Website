@@ -295,6 +295,10 @@ h3 {
   border-bottom-color: transparent; /* stop underline fighting */
 }
 
+.nav-link.nav-cta {
+  border-radius: 0;
+}
+
 .nav-cta:hover {
   border-color: var(--brand);
   border-bottom-color: transparent;
@@ -587,7 +591,8 @@ h3 {
 }
 
 .card img {
-  width: 100%;
+  width: calc(100% + 3rem);
+  max-width: none;
   aspect-ratio: 16 / 9;
   height: auto;
   border-radius: var(--radius-16) var(--radius-16) 0 0;
