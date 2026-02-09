@@ -182,7 +182,7 @@ h3 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 300;
   padding: 1rem 0;
 }
 
@@ -263,7 +263,7 @@ h3 {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 1.5rem;
+  gap: 1.25rem;
   align-items: center;
 }
 
@@ -272,10 +272,13 @@ h3 {
 .nav-menu a {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  font-weight: 700;
+  padding: 0.75rem 0.25rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  border-bottom: 3px solid transparent;
+  border-bottom: 4px solid transparent;
+  color: var(--text);
 }
 
 /* Active + hover (keep your brand underline) */
@@ -284,7 +287,7 @@ h3 {
 .nav-link:hover,
 .nav-menu a:hover {
   color: var(--brand);
-  border-bottom-color: var(--brand);
+  border-bottom-color: var(--highlight);
   text-decoration: none;
 }
 
@@ -293,6 +296,12 @@ h3 {
   border: 2px solid var(--brand);
   border-radius: var(--radius-0);
   border-bottom-color: transparent; /* stop underline fighting */
+  padding: 0.6rem 1rem;
+  text-transform: uppercase;
+}
+
+.nav-link.nav-cta {
+  border-radius: 0;
 }
 
 .nav-link.nav-cta {
@@ -317,11 +326,12 @@ h3 {
   left: 0;
   min-width: 220px;
   margin: 0;
-  padding: 0.5rem;
+  padding: 0.25rem;
   list-style: none;
-  border-radius: 16px;
-  background: var(--surface, #fff);
-  box-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,0.12));
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 
 .has-children:hover .nav-submenu,
@@ -333,16 +343,18 @@ h3 {
 .nav-sublink {
   display: block;
   padding: 0.6rem 0.75rem;
-  border-radius: 12px;
+  border-radius: 6px;
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 3px solid transparent;
+  border-bottom: 0;
+  color: var(--text);
 }
 
 .nav-sublink.active,
 .nav-sublink:hover {
   color: var(--brand);
-  border-bottom-color: var(--brand);
+  background: var(--surface);
+  text-decoration: none;
 }
 
 /* Mobile off-canvas */
@@ -357,6 +369,7 @@ h3 {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.35);
+  z-index: 0;
 }
 
 .mobile-menu__panel {
@@ -371,12 +384,13 @@ h3 {
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 0.75rem;
+  z-index: 1;
 }
 
 .mobile-menu__close {
   justify-self: end;
   padding: 0.6rem 0.9rem;
-  border-radius: 999px;
+  border-radius: 0;
   font-weight: 900;
 }
 
@@ -392,14 +406,14 @@ h3 {
 .mobile-summary {
   display: block;
   padding: 0.95rem 0.95rem;
-  border-radius: 16px;
+  border-radius: 0;
   text-decoration: none;
   font-weight: 900;
 }
 
 .mobile-cta {
   border: 2px solid var(--brand);
-  border-radius: 999px;
+  border-radius: 0;
 }
 
 .mobile-details > summary { list-style: none; cursor: pointer; }
@@ -596,7 +610,7 @@ h3 {
   aspect-ratio: 16 / 9;
   height: auto;
   border-radius: var(--radius-16) var(--radius-16) 0 0;
-  margin: -1.5rem -1.5rem 1rem;
+  margin: 0 0 1rem;
   object-fit: cover;
 }
 
