@@ -5,6 +5,14 @@ $pageTitle = $pageTitle ?? $SITE['name'];
 $pageDesc  = $pageDesc  ?? $SITE['tagline'];
 
 $current = current_path();
+$requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+$baseUrl = rtrim((string)($SITE['url'] ?? ''), '/');
+if ($baseUrl === '') {
+  $host = (string)($_SERVER['HTTP_HOST'] ?? 'localhost');
+  $host = preg_replace('/[^a-z0-9.\-:]/i', '', $host);
+  $baseUrl = 'https://' . ($host !== '' ? $host : 'localhost');
+}
+$ogUrl = $baseUrl . $requestPath;
 
 // Icons config (optional in case older pages load config without it)
 $ICONS = $ICONS ?? [];
@@ -20,7 +28,7 @@ $ICONS = $ICONS ?? [];
   <meta property="og:title" content="<?= e($pageTitle) ?> | <?= e($SITE['name']) ?>">
   <meta property="og:description" content="<?= e($og_description ?? $pageDesc) ?>">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="<?= e('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) ?>">
+  <meta property="og:url" content="<?= e($ogUrl) ?>">
   <meta property="og:site_name" content="<?= e($SITE['name']) ?>">
   <meta property="og:image" content="<?= e(asset_url($og_image ?? $SOCIAL_SHARING['default_image'])) ?>">
   <meta property="og:image:alt" content="<?= e($og_image_alt ?? $SOCIAL_SHARING['default_image_alt']) ?>">  <meta property="og:image:width" content="1200">
@@ -218,3 +226,5 @@ function item_or_children_active(string $current, array $item): bool {
   </div>
   <div class="mobile-menu__backdrop" aria-hidden="true"></div>
 </div>
+</header>
+<main>
