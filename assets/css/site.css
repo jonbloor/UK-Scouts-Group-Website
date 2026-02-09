@@ -612,6 +612,7 @@ h3 {
   border-radius: var(--radius-16) var(--radius-16) 0 0;
   margin: 0 0 1rem;
   object-fit: cover;
+  object-position: center;
 }
 
 .card.card--stack {
