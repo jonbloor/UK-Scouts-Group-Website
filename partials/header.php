@@ -46,7 +46,7 @@ $ICONS = $ICONS ?? [];
   <meta name="twitter:description" content="<?= e($og_description ?? $pageDesc) ?>">
   <meta name="twitter:image" content="<?= e(asset_url($og_image ?? $SOCIAL_SHARING['default_image'])) ?>">
   <meta name="twitter:image:alt" content="<?= e($og_image_alt ?? $SOCIAL_SHARING['default_image_alt']) ?>">
-<link rel="stylesheet" href="<?= e(asset_url('/assets/css/site.css?v=4')) ?>">
+<link rel="stylesheet" href="<?= e(asset_url('/assets/css/site.css')) ?>">
 
   <?php if (!empty($ICONS['favicon_ico'])): ?>
     <link rel="icon" type="image/x-icon" href="<?= e($ICONS['favicon_ico']) ?>">
