@@ -143,6 +143,6 @@
 
     </div>
   </footer>
-<script src="<?= e(asset_url('/assets/js/site.js?v=2')) ?>" defer></script>
+<script src="<?= e(asset_url('/assets/js/site.js')) ?>" defer></script>
 </body>
 </html>

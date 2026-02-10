@@ -11,11 +11,23 @@ function current_path(): string {
 }
 
 function asset_url(string $webPath): string {
-  // $webPath like '/assets/css/site.css'
-  $filePath = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/') . $webPath;
-  if ($filePath && is_file($filePath)) {
-    return $webPath . '?v=' . filemtime($filePath);
+  // $webPath like '/assets/css/site.css' (optionally with query string)
+  $path = parse_url($webPath, PHP_URL_PATH) ?: $webPath;
+  $query = parse_url($webPath, PHP_URL_QUERY);
+
+  $candidates = [
+    rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/') . $path,
+    __DIR__ . '/..' . $path,
+  ];
+
+  foreach ($candidates as $filePath) {
+    if ($filePath !== '' && is_file($filePath)) {
+      $sep = $query ? '&' : '?';
+      $suffix = ($query ? ('?' . $query) : '') . $sep . 'v=' . filemtime($filePath);
+      return $path . $suffix;
+    }
   }
+
   return $webPath;
 }
 
