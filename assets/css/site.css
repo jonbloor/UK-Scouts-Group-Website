@@ -623,14 +623,33 @@ h3 {
 .card.card--stack {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
 }
 .card.card--stack p {
   flex: 1;
 }
 
+.card.card--stack img {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+.card.card--stack h3,
+.card.card--stack p,
+.card.card--stack .btn {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
 /* CTA alignment */
-.card.card--stack { display: flex; flex-direction: column; height: 100%; }
-.card.card--stack .btn { margin-top: auto; }
+.card.card--stack .btn {
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+}
 
 /* Gentle background for this specific block (preferred with a dedicated class) */
 .hp-cards { background: var(--surface); }
