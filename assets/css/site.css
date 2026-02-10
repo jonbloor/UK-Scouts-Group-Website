@@ -253,7 +253,7 @@ h3 {
 /* NAV (desktop + mobile) */
 .nav-toggle {
   display: none;
-  padding: 0.6rem 0.9rem;
+  padding: 0.6rem 1rem;
   font-weight: 900;
   border-radius: 0;
   border: 2px solid var(--brand);

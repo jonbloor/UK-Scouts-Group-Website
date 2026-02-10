@@ -201,6 +201,9 @@ function item_or_children_active(string $current, array $item): bool {
     <button class="mobile-menu__close" type="button">Close</button>
 
     <ul class="mobile-links" role="list">
+      <li class="mobile-item">
+        <a class="mobile-link" href="/index.php">Home</a>
+      </li>
       <?php foreach ($nav as $item): ?>
         <?php $hasChildren = !empty($item['children']); ?>
         <li class="mobile-item">
