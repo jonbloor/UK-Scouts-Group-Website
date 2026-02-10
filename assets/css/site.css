@@ -257,9 +257,8 @@ h3 {
   font-weight: 900;
   border-radius: 0;
   border: 2px solid var(--brand);
-  background: var(--brand);
-  color: #fff;
-  text-transform: uppercase;
+  background: transparent;
+  color: var(--brand);
 }
 
 .nav-menu {
@@ -299,12 +298,13 @@ h3 {
 .nav-cta {
   border: 2px solid var(--brand);
   border-radius: var(--radius-0);
-  border-bottom: 0;
-  padding: 0.55rem 1rem;
-  line-height: 1;
+  border-bottom-color: transparent; /* stop underline fighting */
+  padding: 0.6rem 1rem;
   text-transform: uppercase;
-  background: var(--brand);
-  color: #fff;
+}
+
+.nav-link.nav-cta {
+  border-radius: 0;
 }
 
 .nav-link.nav-cta {
@@ -314,12 +314,6 @@ h3 {
 .nav-cta:hover {
   border-color: var(--brand);
   border-bottom: 0;
-  background: #fff;
-  color: var(--brand);
-}
-
-.nav-toggle:hover,
-.nav-toggle:focus-visible {
   background: #fff;
   color: var(--brand);
 }
@@ -380,7 +374,7 @@ h3 {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.35);
-  z-index: 1;
+  z-index: 0;
 }
 
 .mobile-menu__panel {
@@ -395,7 +389,7 @@ h3 {
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 0.75rem;
-  z-index: 2;
+  z-index: 1;
 }
 
 .mobile-menu__close {
@@ -621,7 +615,7 @@ h3 {
   aspect-ratio: 16 / 9;
   height: auto;
   border-radius: var(--radius-16) var(--radius-16) 0 0;
-  margin: -1.5rem -1.5rem 1rem;
+  margin: 0 0 1rem;
   object-fit: cover;
   object-position: center;
 }
