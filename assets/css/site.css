@@ -300,7 +300,7 @@ h3 {
   border-radius: var(--radius-0);
   border-bottom-color: var(--brand);
   background: var(--brand);
-  color: #fffff !important;
+  color: #ffffff !important;
   padding: 0.6rem 1rem;
   text-transform: uppercase;
 }
